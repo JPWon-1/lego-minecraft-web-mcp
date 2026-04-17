@@ -1,0 +1,20 @@
+{
+  "id": "ch-004",
+  "title": "탑",
+  "difficulty": "medium",
+  "mode": "text",
+  "grid_size": [10, 10, 12],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "바닥은 3×3입니다." },
+    { "level": "medium", "penalty": 10, "text": "3×3 돌 벽 8블록 높이, 뾰족한 지붕." },
+    { "level": "large", "penalty": 20, "text": "3×3 바닥, 회색 돌 벽 8블록(z=0..7), z=8 3×3 플랫, z=9 중앙 1×1 피크." }
+  ],
+  "optimal_instructions": 8,
+  "time_estimate_minutes": 5,
+  "tutorial_mode": false
+}
