@@ -1,0 +1,20 @@
+{
+  "id": "ch-005",
+  "title": "ㄱ자 별장",
+  "difficulty": "hard",
+  "mode": "image",
+  "grid_size": [15, 15, 12],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "평면이 ㄱ자 모양입니다." },
+    { "level": "medium", "penalty": 10, "text": "본채 8×8 + 부속채 5×5, 2층 구조, 발코니가 있음." },
+    { "level": "large", "penalty": 20, "text": "본채 8×8(0..7, 0..7), 부속채 5×5(8..12, 1..5) 부착, 각각 2층 흰색 벽, 갈색 평지붕, 본채 동측 2층에 발코니 + 난간." }
+  ],
+  "optimal_instructions": 20,
+  "time_estimate_minutes": 10,
+  "tutorial_mode": false
+}
