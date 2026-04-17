@@ -1,0 +1,20 @@
+{
+  "id": "ch-002",
+  "title": "회색 창고",
+  "difficulty": "easy",
+  "mode": "text",
+  "grid_size": [10, 10, 6],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "바닥면은 4×4입니다." },
+    { "level": "medium", "penalty": 10, "text": "회색 벽 2블록 높이, 평면 지붕입니다." },
+    { "level": "large", "penalty": 20, "text": "4×4 바닥, 회색 벽 2블록, 평면 지붕. 문은 남쪽, 창문은 동쪽." }
+  ],
+  "optimal_instructions": 6,
+  "time_estimate_minutes": 3,
+  "tutorial_mode": false
+}
