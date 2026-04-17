@@ -4,8 +4,12 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "bin": {
+    "blockgame": "dist/cli.js",
+    "blockgame-mcp": "dist/mcp-cli.js"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node scripts/postbuild.mjs",
     "dev": "tsx src/cli.ts",
     "test": "vitest run --passWithNoTests",
     "typecheck": "tsc --noEmit"
