@@ -1,0 +1,20 @@
+{
+  "id": "ch-003",
+  "title": "2층 주택",
+  "difficulty": "medium",
+  "mode": "image",
+  "grid_size": [10, 10, 12],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "바닥면은 6×6, 두 개 층으로 이루어져 있습니다." },
+    { "level": "medium", "penalty": 10, "text": "1층은 흰색 3블록, 트림 라인, 2층은 노란색 3블록, 평면 갈색 지붕." },
+    { "level": "large", "penalty": 20, "text": "6×6 바닥. 1층 흰색 벽 3블록(z=0..2), z=3 갈색 트림 라인, 2층 노란색 벽 3블록(z=4..6), 평면 갈색 지붕 z=7." }
+  ],
+  "optimal_instructions": 10,
+  "time_estimate_minutes": 5,
+  "tutorial_mode": false
+}
