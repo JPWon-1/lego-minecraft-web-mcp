@@ -7,3 +7,6 @@ export * from "./scorer/iou.js";
 export * from "./scorer/bonus.js";
 export * from "./scorer/penalty.js";
 export * from "./scorer/final.js";
+export * from "./challenges/loader.js";
+export * from "./challenges/validate.js";
+export * from "./challenges/target-blocks.js";

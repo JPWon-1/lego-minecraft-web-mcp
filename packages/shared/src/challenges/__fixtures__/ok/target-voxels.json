@@ -1,0 +1,6 @@
+{
+  "grid_size": [5, 5, 5],
+  "blocks": [
+    { "pos": [0, 0, 0], "color": "#FFF", "type": "voxel_1x1" }
+  ]
+}

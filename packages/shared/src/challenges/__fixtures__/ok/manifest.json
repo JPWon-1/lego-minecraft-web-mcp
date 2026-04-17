@@ -1,0 +1,19 @@
+{
+  "id": "ch-test",
+  "title": "테스트",
+  "difficulty": "easy",
+  "mode": "image",
+  "grid_size": [5, 5, 5],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "s" },
+    { "level": "medium", "penalty": 10, "text": "m" },
+    { "level": "large", "penalty": 20, "text": "l" }
+  ],
+  "optimal_instructions": 5,
+  "time_estimate_minutes": 2
+}
