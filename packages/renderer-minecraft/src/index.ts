@@ -1,1 +1,2 @@
-export const version = "0.0.1";
+export { VoxelScene } from "./VoxelScene.js";
+export { VoxelBlock } from "./VoxelBlock.js";
