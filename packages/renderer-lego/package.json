@@ -11,6 +11,7 @@
   "dependencies": {
     "@blockgame/shared": "workspace:*",
     "@react-three/fiber": "^8.16.0",
+    "@react-three/drei": "^9.105.0",
     "react": "^18.3.0",
     "three": "^0.162.0"
   },
