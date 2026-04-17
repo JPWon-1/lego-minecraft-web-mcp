@@ -1,0 +1,20 @@
+{
+  "id": "ch-001",
+  "title": "작은 오두막",
+  "difficulty": "easy",
+  "mode": "image",
+  "grid_size": [10, 10, 8],
+  "tracks": ["minecraft", "lego"],
+  "target_image": "target-image.png",
+  "target_spec_md": "target-spec.md",
+  "target_voxels": "target-voxels.json",
+  "target_bricks": "target-bricks.json",
+  "hints": [
+    { "level": "small", "penalty": 5, "text": "집의 바닥면은 5×5입니다." },
+    { "level": "medium", "penalty": 10, "text": "벽은 흰색 3블록 높이, 지붕은 빨간 경사입니다." },
+    { "level": "large", "penalty": 20, "text": "5×5 베이스, 흰 벽 3블록, 경사 빨간 지붕. 남쪽 벽 중앙(x=2, z=0)에 문, 북쪽 벽에 창문 2개." }
+  ],
+  "optimal_instructions": 5,
+  "time_estimate_minutes": 2,
+  "tutorial_mode": true
+}
