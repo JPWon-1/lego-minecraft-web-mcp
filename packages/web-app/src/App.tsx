@@ -1,8 +1,10 @@
 import React from "react";
+import type { ScoreReport } from "@blockgame/shared";
 import { useSceneReducer } from "./state/scene-store.js";
 import { useGameSocket } from "./hooks/useGameSocket.js";
 import { ChallengeSelector } from "./components/ChallengeSelector.js";
 import { InstructionLog } from "./components/InstructionLog.js";
+import { ScoreReportModal } from "./components/ScoreReport.js";
 
 export function App() {
   const [state, dispatch] = useSceneReducer();
@@ -19,6 +21,12 @@ export function App() {
         <p>Blocks: {state.blocks.length}</p>
       </main>
       <InstructionLog turns={[]} />
+      {state.report ? (
+        <ScoreReportModal
+          report={state.report as ScoreReport}
+          onClose={() => { /* dispatch({ type: "clear_report" }) — future enhancement */ }}
+        />
+      ) : null}
     </div>
   );
 }
