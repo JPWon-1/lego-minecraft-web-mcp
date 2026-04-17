@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run --passWithNoTests",
+    "dev": "echo 'server dev not yet implemented — see Task 27'"
   },
   "devDependencies": {
     "typescript": "^5.4.0",
