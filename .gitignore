@@ -1,1 +1,11 @@
 .superpowers/
+node_modules/
+dist/
+*.tsbuildinfo
+.vite/
+.turbo/
+coverage/
+.env
+.env.local
+**/.blockgame/
+.DS_Store
