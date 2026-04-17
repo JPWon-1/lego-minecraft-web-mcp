@@ -4,3 +4,6 @@ export * from "./types/score.js";
 export * from "./types/session.js";
 export * from "./types/tool-result.js";
 export * from "./scorer/iou.js";
+export * from "./scorer/bonus.js";
+export * from "./scorer/penalty.js";
+export * from "./scorer/final.js";
