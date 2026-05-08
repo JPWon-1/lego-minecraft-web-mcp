@@ -9,3 +9,13 @@ coverage/
 .env.local
 **/.blockgame/
 .DS_Store
+
+# Playwright test artifacts
+.playwright-mcp/
+
+# Local screenshots from manual / e2e testing (not part of source)
+*.png
+!packages/web-app/public/landing/*.png
+
+# Initial design hand-off bundle (already integrated into web-app/src/landing/)
+integration/

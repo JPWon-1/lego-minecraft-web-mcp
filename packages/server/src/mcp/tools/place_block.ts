@@ -8,6 +8,7 @@ import {
   type Block,
 } from "@blockgame/shared";
 import { getToolContext } from "../tool-context.js";
+import { findOverlap, isSupported } from "../brick-sizes.js";
 
 let _idCounter = 0;
 function newBlockId(): string {
@@ -36,6 +37,40 @@ export async function placeBlock(
       "INTENT_NOT_LOGGED",
       "Call record_user_intent first",
       "The current turn expired (>30s) or was never started.",
+    );
+  }
+  if (args.rotation !== undefined && ![0, 90, 180, 270].includes(args.rotation)) {
+    return err(
+      "INVALID_ROTATION",
+      `rotation must be 0, 90, 180, or 270 (got ${args.rotation})`,
+      "Y-axis rotation is constrained to 90° increments.",
+    );
+  }
+  // Physical support check — LEGO bricks must rest on baseplate, on a block
+  // directly below, or on a same-Z neighbor. Minecraft (voxel) blocks are
+  // exempt; the game itself allows mid-air voxels.
+  if (
+    args.track === "lego" &&
+    !isSupported(
+      { type: args.type, position: args.position, rotation: args.rotation },
+      ctx.state.scene.blocks,
+    )
+  ) {
+    return err(
+      "UNSUPPORTED_PLACEMENT",
+      `Brick at [${args.position.join(",")}] is floating`,
+      "LEGO bricks need a baseplate, a brick directly below, or a same-Z neighbor for support.",
+    );
+  }
+  const clash = findOverlap(
+    { type: args.type, position: args.position, rotation: args.rotation },
+    ctx.state.scene.blocks,
+  );
+  if (clash) {
+    return err(
+      "OVERLAP",
+      `Position occupied by ${clash.id}`,
+      `A ${clash.type} at [${clash.position.join(",")}] already covers that space.`,
     );
   }
   const id = newBlockId();

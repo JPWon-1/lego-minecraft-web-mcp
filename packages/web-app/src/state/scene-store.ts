@@ -7,7 +7,8 @@ type Action =
   | { type: "block_removed"; id: string }
   | { type: "scene_reset" }
   | { type: "sync_state"; session: { current_scene: SceneSnapshot } }
-  | { type: "score_result"; report: unknown };
+  | { type: "score_result"; report: unknown }
+  | { type: "clear_report" };
 
 export interface SceneState {
   blocks: Block[];
@@ -25,6 +26,7 @@ function reduce(s: SceneState, a: Action): SceneState {
     case "scene_reset": return { ...s, blocks: [] };
     case "sync_state": return { ...s, blocks: a.session.current_scene.blocks };
     case "score_result": return { ...s, report: a.report };
+    case "clear_report": return { ...s, report: undefined };
     default: return s;
   }
 }
