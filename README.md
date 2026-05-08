@@ -10,6 +10,10 @@
 
 `MIT` · `Made in KR` · `MCP-powered`
 
+<br />
+
+<img src="docs/screenshots/01-hero.png" alt="차곡차곡 — Hero" width="900" />
+
 </div>
 
 ---
@@ -28,6 +32,38 @@
                                                        │  .ldr 파일   │
                                                        └──────────────┘
 ```
+
+---
+
+## 📸 모습
+
+<table>
+<tr>
+<td width="50%">
+<b>🏰 462 블록 성채</b><br/>
+한 마디로 짓는 본격 작품 — 코너 타워, 박공 지붕, 정문 아치, 깃발까지.<br/>
+<img src="docs/screenshots/02-castle.png" alt="Castle build" />
+</td>
+<td width="50%">
+<b>📐 단계별 조립 설명서</b><br/>
+LEGO 매뉴얼처럼 한 장씩. 부품 리스트 + 이번 step 새 블록 강조.<br/>
+<img src="docs/screenshots/03-instructions.png" alt="Instruction mode" />
+</td>
+</tr>
+<tr>
+<td width="50%">
+<b>🪟 모듈 회전</b><br/>
+창문·문·지붕 모듈을 0/90/180/270° 회전 — 미리보기까지 정확히.<br/>
+<img src="docs/screenshots/04-modules-rotation.png" alt="Module rotation" />
+</td>
+<td width="50%">
+<b>💾 LDraw 내보내기</b><br/>
+디자인을 <code>.ldr</code> 로 다운로드 → LeoCAD · BrickLink Studio 에서 열기 → 진짜 부품 사서 조립.<br/>
+<br/>
+<sub>예: <code>1 4 60 0 80 1 0 0 0 1 0 0 0 1 3001.dat</code> = 빨강 2×4 브릭 한 개</sub>
+</td>
+</tr>
+</table>
 
 ---
 
