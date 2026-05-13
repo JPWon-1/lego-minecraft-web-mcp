@@ -1,41 +1,70 @@
 #!/usr/bin/env node
 /**
- * Post-build: ensure CLI entries have #!/usr/bin/env node shebang and are
- * executable, then bundle the web-app's build into dist/web-app so the
- * `blockgame` CLI can serve the UI itself (no separate Vite in production).
+ * Post-build:
+ *  1) Ensure CLI entries have #!/usr/bin/env node shebang and are executable.
+ *  2) Bundle the web-app's build into dist/web-app so `blockgame` serves UI
+ *     without a separate Vite.
+ *  3) Bundle dist/cli.js and dist/mcp-cli.js with esbuild — inlines the
+ *     `@blockgame/shared` workspace package so the published npm tarball is
+ *     self-contained (no workspace-protocol dependency).
  */
 import { readFileSync, writeFileSync, chmodSync, existsSync, cpSync, rmSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
+import { build as esbuild } from "esbuild";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const distDir = resolve(here, "..", "dist");
 const entries = ["cli.js", "mcp-cli.js"];
 
+// 1) Bundle each entry with esbuild — inline @blockgame/shared, externalize
+//    real npm dependencies (express, ws, vite, etc. — installed by npm at the
+//    user's machine).
+const externals = [
+  "express",
+  "ws",
+  "open",
+  "@modelcontextprotocol/sdk",
+  "vite",
+  // node built-ins are auto-external when platform=node
+];
+
 for (const name of entries) {
-  const f = resolve(distDir, name);
-  if (!existsSync(f)) {
-    console.error(`[postbuild] missing ${f}`);
+  const inFile = resolve(distDir, name);
+  if (!existsSync(inFile)) {
+    console.error(`[postbuild] missing ${inFile}`);
     process.exit(1);
   }
-  const src = readFileSync(f, "utf8");
-  if (!src.startsWith("#!")) {
-    writeFileSync(f, "#!/usr/bin/env node\n" + src, "utf8");
+  await esbuild({
+    entryPoints: [inFile],
+    bundle: true,
+    platform: "node",
+    target: "node18",
+    format: "esm",
+    outfile: inFile,
+    allowOverwrite: true,
+    external: externals,
+    logLevel: "warning",
+  });
+  // tsc preserves the shebang in dist/cli.ts but esbuild strips it during
+  // bundling. Re-add and chmod.
+  const out = readFileSync(inFile, "utf8");
+  if (!out.startsWith("#!")) {
+    writeFileSync(inFile, "#!/usr/bin/env node\n" + out, "utf8");
   }
-  chmodSync(f, 0o755);
+  chmodSync(inFile, 0o755);
 }
+console.error(`[postbuild] esbuild bundled: ${entries.join(", ")}`);
 
-// Bundle web-app build into server dist (served statically by cli.ts).
+// 2) Bundle web-app build into server dist (served statically by cli.ts).
 const webAppDist = resolve(here, "..", "..", "web-app", "dist");
-const bundled = resolve(distDir, "web-app");
+const bundledUi = resolve(distDir, "web-app");
 if (existsSync(resolve(webAppDist, "index.html"))) {
-  rmSync(bundled, { recursive: true, force: true });
-  cpSync(webAppDist, bundled, { recursive: true });
-  console.error(`[postbuild] bundled web-app → ${bundled}`);
+  rmSync(bundledUi, { recursive: true, force: true });
+  cpSync(webAppDist, bundledUi, { recursive: true });
+  console.error(`[postbuild] bundled web-app → ${bundledUi}`);
 } else {
   console.error(
     `[postbuild] skipped web-app bundle (not built yet — run pnpm --filter @blockgame/web-app build first)`,
   );
 }
-
-console.error(`[postbuild] shebangs + chmod ok: ${entries.join(", ")}`);
